@@ -1,0 +1,14 @@
+{
+	"_id": "ce82280dc54a3e4beffd2d1efa00c4e6",
+	"login":"admin",
+	"kind":"Member", 
+    "roles": ["Manager", "SuperManager"], 
+    "firstName": "admin", 
+    "lastName": "admin",
+     "password":"admin", 
+     "status": "active",
+     "email": "avaneesh.murthy@gmail.com",
+     "visits": 0
+}
+
+
