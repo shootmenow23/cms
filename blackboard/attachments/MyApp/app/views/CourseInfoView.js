@@ -28,15 +28,6 @@ $(function () {
 
             this.$el.append('<tr><td>Leader Name: </td><td>' + leaderInfo.firstName + ' ' + leaderInfo.lastName + '</td></tr>')
             this.$el.append('<tr><td>Leader Email : </td><td>' + leaderInfo.email + '</td></tr>')
-            this.$el.append('<tr><td>Leader Phone Number : </td><td>' + leaderInfo.phone + '</td></tr>')
-            var bgcolor = ''
-            var fgcolor = ''
-            if (courseInfo.backgroundColor == '')
-                bgcolor = 'Not Set'
-            this.$el.append('<tr><td>Background Color : </td><td><div style="border:2px solid black;width:50px;height:20px;background-color:' + courseInfo.backgroundColor + '"></div>' + bgcolor + '</td></tr>')
-            if (courseInfo.foregroundColor == '')
-                fgcolor = 'Not Set'
-            this.$el.append('<tr><td>foreground Color :</td><td><div style="border:2px solid black;width:50px;height:20px;background-color:' + courseInfo.foregroundColor + '"></div>' + fgcolor + '</td></tr>')
 
         },
 

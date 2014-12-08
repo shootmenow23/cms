@@ -93,7 +93,7 @@ $(function () {
                 mem.fetch({
                     async: false
                 })
-                var mail = mem.get('login') + '.' + code +na+ '@olebell.org'
+                var mail = mem.get('login') + '@ccs.neu.edu'
 
                 var src = "img/default.jpg"
                 var attchmentURL = '/members/' + mem.id + '/'
@@ -101,7 +101,7 @@ $(function () {
                     attchmentURL = attchmentURL + _.keys(mem.get('_attachments'))[0]
                     src = attchmentURL
                 }
-                viewtext += '<tr><td><img width="45px" height="45px" src="' + src + '"/></td><td>' + mem.get('firstName') + ' ' + mem.get('lastName') + '</td><td><input type="checkbox" name="courseMember" value="' + mail + '">Send mail</td>'
+                viewtext += '<tr><td><img width="45px" height="45px" src="' + src + '"/></td><td>' + mem.get('firstName') + ' ' + mem.get('lastName') + '</td>'
     
                 
                 if($.cookie('Member._id')==courseModel.get('courseLeader'))
@@ -112,7 +112,7 @@ $(function () {
                 viewtext+='</tr>'
 
             }
-            viewtext += '<tr><td></td><td></td><td><button class="btn"  id="selectAllMembers">Select All</button><button style="margin-left:10px" class="btn" onclick=showComposePopupMultiple("' + mail + '") id="sendMailButton">Send Mail</button><button class="btn" style="margin-left:10px"  id="retrunBack">Back</button></td></tr>'
+            viewtext += '<tr><td></td><td></td><td><button class="btn" style="margin-left:10px"  id="retrunBack">Back</button></td></tr>'
             viewtext += '</table>'
             this.$el.append(viewtext)
 

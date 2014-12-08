@@ -22,26 +22,22 @@ $(function() {
 
     schema: {
       CourseTitle: 'Text',
-      languageOfInstruction: 'Text',
-      memberLimit: 'Text',
-     courseLeader:{
+
+      courseLeader:{
             type:'Select',
             options:null,
       },
-        description:'TextArea',
-        
-       method:'Text',
-      gradeLevel: {
-        type: 'Select',
-        options: ['Pre-K','K','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12','College','Post-Grad']
-      },
+
       subjectLevel: {
         type: 'Select',
         options: ['Beginner', 'Intermediate', 'Advanced', 'Expert']
-      },  
+      }, 
+
+      description:'TextArea',
+   
       startDate: 'Text',
       endDate: 'Text',
-       frequency: {
+      frequency: {
         type: 'Radio',
         options: ['Daily', 'Weekly']
       },
@@ -49,14 +45,10 @@ $(function() {
         type: 'Checkboxes',
         options: ['Saturday', 'Sunday','Monday','Tuesday','Wednesday','Thursday','Friday']
       },
-       startTime: 'Text',
+      startTime: 'Text',
       endTime: 'Text',
-     location: 'Text',
       
-     backgroundColor: 'Text',
-      foregroundColor: 'Text',
-      
-     members: {
+      members: {
         type: 'Checkboxes',
         options: null // Populate this when instantiating
       },

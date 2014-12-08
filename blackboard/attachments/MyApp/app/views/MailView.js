@@ -187,6 +187,7 @@ $(function () {
 
                 mailView.updateMailBody(body)
             },
+
             "click #search-mail": function (e) {
                 skip = 0
                 while (skipStack.length > 0) {
@@ -198,6 +199,7 @@ $(function () {
                 this.modelNo = 0
                 this.fetchRecords()
             },
+
             "click #back": function (e) {
                 //	this.viewButton(e)
                 skip = 0
@@ -211,6 +213,7 @@ $(function () {
                 this.fetchRecords()
             }
         },
+
         unReadMails:function (e) {
                 this.modelNo = 0
                 skip = 0
@@ -221,7 +224,8 @@ $(function () {
                 this.fetchRecords()
                 $("#nextButton").show()
                 $("#previousButton").hide()
-            },
+        },
+
         renderAllMails: function (e) {
         
             mailView.modelNo = 0
@@ -233,8 +237,8 @@ $(function () {
             
             $("#nextButton").show()
             $("#previousButton").hide()
-
         },
+
         viewButton: function (e) {
             var modelNo = e.currentTarget.value
             var model = mailView.collection.at(modelNo)
@@ -259,7 +263,7 @@ $(function () {
             })
             mailView.vars.firstName = member.get('firstName')
             mailView.vars.lastName = member.get('lastName')
-            mailView.vars.email = member.get('login') + '.' + mailView.code+mailView.nationName.substring(3,5)+ '@olebell.org'
+            mailView.vars.email = member.get('login') + '@ccs.neu.edu'
             mailView.vars.modelNo = modelNo
             mailView.vars.login = mailView.vars.email
             if (attachmentName != "") {
@@ -271,6 +275,7 @@ $(function () {
             mailView.$el.html('')
             mailView.$el.append(mailView.templateMailView(mailView.vars))
         },
+
         deleteButton: function (e) {
             //alert(e.currentTarget.value)
             var modelNo = e.currentTarget.value
@@ -279,6 +284,7 @@ $(function () {
             mailView.renderAllMails()
             // window.location.reload()
         },
+
         initialize: function (args) {
             this.code = args.community_code
             this.nationName=args.nationName
@@ -292,6 +298,7 @@ $(function () {
             this.resultArray = []
             this.showNextButton = 0
         },
+
         addOne: function (model) {
             vars = model.toJSON()
             var member = new App.Models.Member()
@@ -335,10 +342,10 @@ $(function () {
             }
             this.collection.forEach(this.addOne, this)
         },
+
         render: function () {
             this.$el.html(this.template(this.vars))
             this.$el.append('<div class="mail-table"><span style="float:right; margin-left:10px;"><button id="nextButton" class="btn btn-primary fui-arrow-right"></button></span> <span style="float:right;"><button id="previousButton" class="btn btn-primary fui-arrow-left"></button></span></div>')
-            //$('#mailActions').html(this.template)
 
 
         },
@@ -385,8 +392,8 @@ $(function () {
                     }
                 }
             })
-
         },
+
         searchInArray: function (resourceArray, searchText) {
             var that = this
             var resultArray = []
@@ -414,6 +421,7 @@ $(function () {
             }
             return resultArray
         },
+
         admissionRequestAccepted: function (courseId)
         {
         	var course = new App.Models.Group();
@@ -453,7 +461,7 @@ $(function () {
         	}})
         	var body = mailView.inViewModel.get('body').replace(/<(?:.|\n)*?>/gm, '')
             //body = body.replace('Accept', '').replace('Reject', '').replace('&nbsp;&nbsp;', '')
-            body = 'Admission request recieved from user "a" has been Accepted<br>'
+            body = 'Admission request recieved from user has been accepted<br>'
             body = body + "<div style='margin-left: 3%;margin-top: 174px;font-size: 11px;color: rgb(204,204,204);'>You have accepted this request.</div>"
             
             mailView.inViewModel.save()
@@ -471,6 +479,7 @@ $(function () {
   			
   			mailView.updateMailBody(body)
         },
+
         admissoinRequestRejected : function (courseId) { 
         	
         	var course = new App.Models.Group();
@@ -495,6 +504,7 @@ $(function () {
   			
   			mailView.updateMailBody(body)
         },
+
         meetupRequestAccepted:function (meetupId) {
             var UMeetup=new App.Collections.UserMeetups()
                 UMeetup.memberId=$.cookie('Member._id')
@@ -507,7 +517,7 @@ $(function () {
                  return 
              }
                 
-        var meetup=new App.Models.MeetUp()
+            var meetup=new App.Models.MeetUp()
         	meetup.id=meetupId
         	meetup.fetch({async:false})
         	
@@ -528,11 +538,10 @@ $(function () {
                     })
                     userMeetup.save()  
                     
-               alert('Successfully Joined')     
-        	
+               alert('Successfully Joined')            	
         },
-        updateMailBody : function(body)
-        {
+
+        updateMailBody : function(body) {
         	var model = new App.Models.Mail()
             model.id = mailView.inViewModel.get("id")
             model.fetch({
@@ -542,7 +551,6 @@ $(function () {
             model.save()
             $('#mail-body').html('<br/>' + body)
         },
-
     })
 
 

@@ -59,7 +59,7 @@ MemberInvite: function () {
           UserMeetUp.set('meetupId',this.model.get('_id'))
           UserMeetUp.set('meetupTitle',this.model.get('title'))
           UserMeetUp.save()
-          alert('successfully Added to your Meetups')
+          alert('Successfully added to your meetups')
           Backbone.history.navigate('dashboard', {
                          trigger: true
                     })
@@ -74,7 +74,6 @@ MemberInvite: function () {
                 meetupInfo.schedule=date.toUTCString()
 
             this.$el.append('<tr><td><b>Title  </b></td><td>' + meetupInfo.title + '   ('+meetupInfo.category+')</td></tr>')  
-            this.$el.append('<tr><td><b>Category  </b></td><td>' +meetupInfo.category +'</td></tr>')
             this.$el.append('<tr><td><b>Description </b></td><td>' + meetupInfo.description + '</td></tr>')
             this.$el.append('<tr><td><b>Location </b></td><td>' + meetupInfo.meetupLocation + '</td></tr>')
             this.$el.append('<tr><td><b>Date </b></td><td>' + meetupInfo.startDate+' --- '+meetupInfo.endDate + '</td></tr>')

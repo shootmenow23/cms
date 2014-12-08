@@ -32,17 +32,12 @@ $(function() {
        password: {validators: ['required']},
        phone: 'Text',
        email:'Text',
-       language :'Text',
        BirthDate:  'Date',
 	   visits : 'Text',
 	   Gender: {
           type: 'Select',
           options: ['Male', 'Female']
       }, 
-      levels: {
-        type: 'Select',
-        options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12','Higher']
-      },
       status:'Text',
       yearsOfTeaching:{
           type: 'Select',

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html manifest="../manifest.appcache" lang="en">
 <head>
-<title>Bell MyApp</title>
+<title>Blackboard</title>
 <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
 <link href="vendor/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" media="screen" />
 
@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="vendor/jquery.timepicker.css"/>
 <link rel="stylesheet" href="vendor/jquery-ui-1.10.3.custom.css"/>
 <link rel="stylesheet" href="vendor/backbone-ui.css"/>
-
 
 <link rel="stylesheet" href="vendor/jQuery-multiselect/jquery.multiselect.filter.css"/>
 <link rel="stylesheet" href="vendor/jQuery-multiselect/jquery.multiselect.css"/>
@@ -182,14 +181,10 @@
 <script src='app/views/Search.js'></script>
 <script src="app/views/SearchSpan.js"></script>
 <script src="app/views/SearchSpans.js"></script>
-
 <script src='app/views/RequestView.js'></script>
-
 <script src='app/views/FeedbackTable.js'></script>
 <script src='app/views/FeedbackRow.js'></script>
 <script src='app/views/FeedbackForm.js'></script>
-
-
 <script src='app/views/GroupsTable.js'></script>
 <script src='app/views/GroupRow.js'></script>
 <script src='app/views/GroupForm.js'></script>
@@ -201,11 +196,9 @@
 <script src='app/views/GroupMembers.js'></script>
 <script src="app/views/InvitationForm.js"></script>
 <script src="app/views/CourseSearch.js"></script>
-
 <script src="app/views/QuizView.js"></script>
 <script src="app/views/takeQuizView.js"></script>
 <script src="app/views/offlinetakeQuizView.js"></script>
-
 <script src='app/views/LevelForm.js'></script>
 <script src='app/views/LevelDetail.js'></script>
 <script src='app/views/LevelsTable.js'></script>
@@ -213,54 +206,40 @@
 <script src='app/views/MeetUpTable.js'></script>
 <script src='app/views/meetupView.js'></script>
 <script src='app/views/MeetupDetails.js'></script>
-
 <script src='app/views/MeetUpRow.js'></script>
 <script src='app/views/MeetUpForm.js'></script>
-
 <script src='app/views/MembersTable.js'></script>
 <script src='app/views/MembersView.js'></script>
 <script src='app/views/MemberRow.js'></script>
-
-
 <script src='app/views/ReportsRow.js'></script>
 <script src='app/views/ReportsTable.js'></script>
 <script src='app/views/ReportForm.js'></script>
 <script src='app/views/CommunityReportCommentView.js'></script>
-
 <script src='app/views/CourseLevelsTable.js'></script>
 <script src='app/views/ResourceForm.js'></script>
 <script src='app/views/MeetupInvitation.js'></script>
-
-
 <script src='app/views/MailView.js'></script>
-
 <script src='app/views/CoursesChartProgress.js'></script>
-
 <script src='app/views/CalendarForm.js'></script>
 <script src='app/views/EventInfo.js'></script>
-
 <script src="app/views/CollectionTable.js"></script>
 <script src="app/views/CollectionRow.js"></script>
 <script src="app/views/ListCollectionView.js"></script>
-
 <script src="app/views/siteFeedbackPage.js"></script>
 <script src="app/views/siteFeedbackPageRow.js"></script>
-
 <script src="app/views/RequestTable.js"></script>
 <script src="app/views/RequestRow.js"></script>
-
 <script src="app/views/Configurations.js"></script>
 <script src="app/views/LogQuery.js"></script>
 <script src="app/views/ActivityReport.js"></script>
 <script src="app/views/ManageCommunity.js"></script>
 <script src="app/views/PublicationTable.js"></script>
 
-
 <!-- javaScript -->
 
 <script src='indexFile.js'></script>
 
-<!-- template for configurations, used by configuration view -->
+
 <script type="text/template" id="template-Configuration">
     <h5>&nbsp;&nbsp;Set Community Language </h5>
     &nbsp;&nbsp;<select id="languageSelection">
@@ -319,11 +298,6 @@
     <li>
         <a href="#">
             <%= languageDict['Dashboard'] %>
-        </a>
-    </li>
-    <li>
-        <a href="#resources">
-            <%= languageDict['Library'] %>
         </a>
     </li>
     <li>
@@ -592,26 +566,6 @@
             View Course
         </a>
     </td>
-
-    <td>
-        <%if(viewProgress==1){%>
-        <a role='button' class='btn btn-info' href='#course/report/<%= _id %>/<%= CourseTitle %>'>
-            <i class="icon-signal icon-white"></i> Progress
-        </a>
-        <%}%>
-    </td>
-
-    <!--   <td>
-          <a role='button' class='btn btn-inverse' href='#course/edit/<%= _id %>'>
-            <i class="icon-edit"></i> Edit
-          </a>
-        </td> -->
-
-    <!-- <td>
-       <a role='button' class='btn btn-inverse' href='#resource/invite/<%= _id %>/<%= CourseTitle %>/<%= kind %>'>
-         <i class="icon-edit"></i> Invite
-       </a>
-     </td> -->
 
     <td>
         <%if(isAdmin==1||isLeader==1){%>

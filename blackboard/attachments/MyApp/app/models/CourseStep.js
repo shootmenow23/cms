@@ -21,15 +21,14 @@ $(function() {
     
   schema: {
       title: {
-      			type:'Text',
-      			validators : ['required']
+            type:'Text',
+            validators : ['required']
       },
-      stepMethod:'Text',
+
       description: { 
-      	type : 'TextArea',
-      	validators : ['required']
+        type : 'TextArea',
+        validators : ['required']
       },
-       stepGoals: 'TextArea',
       
       step :'Text',
       courseId : 'Text',
@@ -52,19 +51,6 @@ $(function() {
       resourceTitles:{
           type:'Select',
           options: [],
-      },
-      allowedErrors:{ 
-      	type : 'Text',
-      	validators : ['required']
-      },
-      outComes: {
-        title: 'Outcomes',
-        type: 'Checkboxes',
-        options: ['Paper', 'Quiz']
-      },
-      passingPercentage:{
-          type:'Select',
-          options: [10,20,30,40,50,60,70,80,90,100],
       },
     },
     saveAttachment: function(formEl, fileEl, revEl) {

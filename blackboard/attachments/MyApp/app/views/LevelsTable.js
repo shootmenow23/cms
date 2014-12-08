@@ -145,7 +145,7 @@ $(function () {
             this.changedSteps = new Array()
         },
         render: function () {
-            this.$el.append('<br/><button class="btn btn-success" id="addstep"  onclick = "document.location.href=\'#level/add/' + this.groupId + '/nolevel/' + this.collection.models.length + '\' ">Add Step</button>')
+            this.$el.append('<br/><button class="btn btn-success" id="addstep"  onclick = "document.location.href=\'#level/add/' + this.groupId + '/nolevel/' + this.collection.models.length + '\' ">Add Lecture</button>')
             if (this.collection.models.length > 0) {
                 this.$el.append('&nbsp;&nbsp;&nbsp;<button class="btn btn-success" id="Rearrange" >Rearrange</button><br/><br/>')
             }

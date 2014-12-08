@@ -175,8 +175,6 @@ $(function () {
 				}
 			})
 
-			// dashboard.$el.children('.groups').append(groupsDiv.el)
-
 			shelfSpans = new App.Views.ShelfSpans()
 			shelfSpans.render()
 
@@ -191,10 +189,6 @@ $(function () {
 			MeetupSpans.render()
 			$('#meetUpTable').append(MeetupSpans.el)
 
-
-
-			//this.$el.children('.now').html(moment().format('dddd') + ' | ' + moment().format('LL'))
-			// Time
 			$('.now').html(moment().format('dddd | DD MMMM, YYYY'))
 			// Member Name
 			var member = App.member
@@ -206,10 +200,10 @@ $(function () {
 			var temp = $.url().data.attr.host.split(".")
 			temp = temp[0].substring(3)	
 			if (temp == "") {
-				temp = "local "
+				temp = ""
 			}
 			temp=temp.charAt(0).toUpperCase() + temp.slice(1);
-			temp = temp + " Community BeLL"
+			temp = temp + " Blackboard"
 			$('.bellLocation').html(temp)
 			if (!member.get('visits')) {
 				member.set('visits', 1)
@@ -238,119 +232,14 @@ $(function () {
 				if (temp1 == 1) {
 					roles = roles + ",&nbsp;"
 				}
-                if(typeofBell=='nation'){
-                    roles = roles + '<a href="../nation/index.html#dashboard">Manager</a>'
-                }
-                else {
-                    roles = roles + '<a href="#communityManage">Manager</a>'
-                }
+
+				roles = ' ' + '<a href="#member/edit/' + $.cookie('Member._id') + '">Admin</a>'
 			}
 			$('.visits').html(temp)
-			$('.name').html(member.get('firstName') + ' ' + member.get('lastName') + '<span style="font-size:15px;">' + roles + '</span>' + '&nbsp;<a href="#member/edit/' + $.cookie('Member._id') + '"><i class="fui-gear"></i></a>')
-			dashboard.checkAvailableUpdates(member.get('roles'), dashboard)
-            if($.cookie('Member.login') === "admin") {
-                var $buttonWelcome = $('<button id="welcomeButton" class="btn btn-hg btn-primary" onclick="document.location.href=\'#updatewelcomevideo\'">Update Welcome Video</button>');
-                dashboard.$el.append($buttonWelcome);
-            }
+			$('.name').html(member.get('firstName') + ' ' + member.get('lastName') + '<span style="font-size:15px;">' + '</span>' + '&nbsp;<a href="#member/edit/' + $.cookie('Member._id') + '"><i class="fui-gear"></i></a>')
 
-			//dashboard.$el.append('<div id="updates"></div>')
-		},
-		checkAvailableUpdates: function (roles, dashboard) {
-			var context = this
-			if ($.inArray('Manager', roles) == -1) {
-				return
-			}
-			var configuration = App.configuration
-			var nationName = configuration.get("nationName")
-			var nationURL = configuration.get("nationUrl")
-			var nationConfigURL = 'http://' + nationName + ':oleoleole@' + nationURL + ':5984/configurations/_all_docs?include_docs=true'
-
-			// console.log(nationConfig)
-			// alert('check')
-			//alert('http://' + nationName + ':oleoleole@' + nationURL + ':5984/configurations/_all_docs?include_docs=true')
-			
-			$.ajax({
-				url: nationConfigURL,
-				type: 'GET',
-				dataType: "jsonp",
-				success: function (json) {
-					var nationConfig = json.rows[0].doc
-					nationConfigJson = nationConfig
-					if (typeof nationConfig.version === 'undefined') {
-						/////No version found in nation
-					}
-					else if (nationConfig.version == configuration.get('version')) {
-						///No updatea availabe
-					}
-					else {
-						if(context.versionCompare(nationConfig.version, configuration.get('version'))<0){
-							console.log("Nation is at low level")
-						}
-						else if (context.versionCompare(nationConfig.version, configuration.get('version'))>0) {
-							dashboard.latestVersion = nationConfig.version
-							dashboard.$el.append('<button class="btn systemUpdate" id="updateButton">System Update Available (' + nationConfig.version + '). Press to update. </button>')
-							dashboard.$el.append('<button class="btn systemUpdate" id="viewReleaseNotes">View Release Notes </button>')
-						}
-						else{
-						console.log("Nation is uptodate")
-						}
-					}
-				}
-			})
-			return;
-		},
-		//following function compare version numbers.
-		/*<li>0 if the versions are equal</li>
-		A negative integer iff v1 < v2
-		A positive integer iff v1 > v2
-		NaN if either version string is in the wrong format*/
-
-		versionCompare: function (v1, v2, options) {
-			var lexicographical = options && options.lexicographical;
-			zeroExtend = options && options.zeroExtend;
-			v1parts = v1.split('.');
-			v2parts = v2.split('.');
-
-			function isValidPart(x) {
-				return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
-			}
-
-			if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
-				return NaN;
-			}
-
-			if (zeroExtend) {
-				while (v1parts.length < v2parts.length) v1parts.push("0");
-				while (v2parts.length < v1parts.length) v2parts.push("0");
-			}
-
-			if (!lexicographical) {
-				v1parts = v1parts.map(Number);
-				v2parts = v2parts.map(Number);
-			}
-
-			for (var i = 0; i < v1parts.length; ++i) {
-				if (v2parts.length == i) {
-					return 1;
-				}
-
-				if (v1parts[i] == v2parts[i]) {
-					continue;
-				}
-				else if (v1parts[i] > v2parts[i]) {
-					return 1;
-				}
-				else {
-					return -1;
-				}
-			}
-
-			if (v1parts.length != v2parts.length) {
-				return -1;
-			}
-
-			return 0;
 		}
+
 	})
 
 })

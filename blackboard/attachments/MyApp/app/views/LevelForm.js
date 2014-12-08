@@ -35,7 +35,6 @@ $(function () {
             // give the form a submit button
             var button = ('<a class="btn btn-success" id="retrunBack"> Back </button>')
             button += ('<a class="btn btn-success" id="formButton">Save</button>')
-            button += ('<a class="btn btn-success" id="addresources">Add Resource</button>')
             this.$el.append(button)
 
         },
@@ -92,13 +91,9 @@ $(function () {
             // Put the form's input into the model in memory
             this.form.commit()
             // Send the updated model to the server
-            if (isNaN(this.model.get("allowedErrors"))) 
+            if (isNaN(this.model.get("step")))
             {
-                alert("Not a valid Allowed Errors")
-            } 
-            else if (isNaN(this.model.get("step")))
-            {
-                alert("Not a valid Step Number")
+                alert("Not a valid lecture number")
             }
             else {
                 if (!this.edit) {
@@ -140,7 +135,7 @@ $(function () {
                         if (done)
                             that.model.save()
                         else
-                            alert("Step already exists")
+                            alert("Lecture already exists")
 
                     }
                 })

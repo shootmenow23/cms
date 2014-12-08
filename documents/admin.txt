@@ -4,10 +4,10 @@
 	"kind":"Member", 
     "roles": ["Manager", "SuperManager"], 
     "firstName": "admin", 
-    "lastName": "admin",
+    "lastName": "administrator",
      "password":"admin", 
      "status": "active",
-     "email": "avaneesh.murthy@gmail.com",
+     "email": "admin@gmail.com",
      "visits": 0
 }
 

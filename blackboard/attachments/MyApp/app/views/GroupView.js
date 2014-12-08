@@ -22,18 +22,13 @@ $(function() {
 			console.log(leaderInfo)	
             this.$el.append('<tr><td><b>Name</b></td><td>' + courseInfo.CourseTitle + '</td></tr>')
             this.$el.append('<tr><td><b>Subject Level </b></td><td>' + courseInfo.subjectLevel + '</td></tr>')
-            this.$el.append('<tr><td><b>Grade Level </b></td><td>' + courseInfo.gradeLevel + '</td></tr>')
             this.$el.append('<tr><td><b>Description</b></td><td>' + courseInfo.description + '</td></tr>')
 
-            this.$el.append('<tr><td><b>Leader Name </b></td><td>' + leaderInfo.firstName + ' ' + leaderInfo.lastName + '</td></tr>')
-            this.$el.append('<tr><td><b>Leader Email </b></td><td>' + leaderInfo.email + '</td></tr>')
-            this.$el.append('<tr><td><b>Leader Phone Number </b></td><td>' + leaderInfo.phone + '</td></tr>')
+            this.$el.append('<tr><td><b>Instructor Name </b></td><td>' + leaderInfo.firstName + ' ' + leaderInfo.lastName + '</td></tr>')
+            this.$el.append('<tr><td><b>Instructor Email </b></td><td>' + leaderInfo.email + '</td></tr>')
+
             
             this.$el.append('<tr><td><b>schedule</b></td><td>Date :  ' + courseInfo.startDate + '-'+courseInfo.endDate+'<br>Time :  '+courseInfo.startTime+'- '+courseInfo.endTime+'</td></tr>')
-            
-            this.$el.append('<tr><td><b>Location </b></td><td>' + courseInfo.location + '</td></tr>')
-            
-           // $(document).on('Notification:submitButtonClicked', function (e) {});
           
     }
   })

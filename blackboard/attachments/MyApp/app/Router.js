@@ -4,7 +4,6 @@ $(function(){
        
       
       routes:{
-            'updatewelcomevideo': 'addOrUpdateWelcomeVideoDoc',
             '': 'MemberLogin',
             'dashboard': 'Dashboard',
             'ereader':'eReader',
@@ -74,7 +73,6 @@ $(function(){
 			'weeklyreports':'WeeklyReports',
 			'removecache':'UpdateManifest',
 			'logreports':'LogQuery',
-			// Not required 'syncLog':'syncLogActivitiy',
 			'reportsActivity':'LogActivity',
 			'setbit' : 'setNeedOptimizedBit',
 			'CompileAppManifest' : 'CompileAppManifest',
@@ -83,38 +81,6 @@ $(function(){
 			
 			
 },
-    addOrUpdateWelcomeVideoDoc: function() {
-        // fetch existing welcome video doc if there is any
-        var welcomeVideoResources = new App.Collections.Resources();
-        welcomeVideoResources.setUrl(App.Server + '/resources/_design/bell/_view/welcomeVideo?include_docs=true');
-        welcomeVideoResources.fetch({
-            success: function () {
-            },
-            error: function () {
-                alert("router:: addOrUpdateWelcomeVideoDoc:: error fetching welcome resources");
-            },
-            async: false
-        });
-        var resourceId, welcomeVidResource;
-        if (welcomeVideoResources.length > 0) {
-            welcomeVidResource = welcomeVideoResources.models[0];
-        }
-        var resource = (welcomeVidResource) ? welcomeVidResource : new App.Models.Resource();
-        resource.on('processed', function () {
-            Backbone.history.navigate('dashboard', {
-                trigger: true
-            })
-        });
-        var resourceFormView = new App.Views.ResourceForm({
-            model: resource
-        });
-        if (resource.id) {
-            resourceFormView.renderAddOrUploadWelcomeVideoForm();
-        } else {
-            resourceFormView.renderAddOrUploadWelcomeVideoForm();
-        }
-        App.$el.children('.body').html(resourceFormView.el);
-    },
     Publications:function(publicationIdes){
 
         publicationIdes=publicationIdes.split(',')
@@ -250,16 +216,15 @@ $(function(){
               path: "/apps/_design/bell"
             })
 
-        },
-        
+        },    
       Configure:function(){
       
-            var conModel = new App.Models.Configuration();
-            var conForm = new App.Views.Configurations({
-                model: conModel
-            })
-            conForm.render();
-            App.$el.children('.body').html(conForm.el);
+//            var conModel = new App.Models.Configuration();
+//            var conForm = new App.Views.Configurations({
+//                model: conModel
+//            })
+//            conForm.render();
+//            App.$el.children('.body').html(conForm.el);
       
       },  
       MemberLogin: function () {
@@ -807,7 +772,7 @@ $(function(){
                 model: model
             })
             App.$el.children('.body').html('<br/>')
-            App.$el.children('.body').append('<h3>Course Manage</h3>')
+            App.$el.children('.body').append('<h3>Manage Course</h3>')
             App.$el.children('.body').append(modelForm.el)
             model.once('Model:ready', function () {
                 // when the users submits the form, the group will be processed
@@ -876,7 +841,7 @@ $(function(){
                     })
                     lTable.groupId = groupId
                     lTable.render()
-                    App.$el.children('.body').append("</BR><h3> Course Steps </h3>")
+                    App.$el.children('.body').append("</BR><h3> Course Lectures </h3>")
                     App.$el.children('.body').append(lTable.el)
 
                     $("#moveup").hide()
@@ -1064,7 +1029,7 @@ $(function(){
 
             if (levelId == "nolevel") {
 
-                App.$el.children('.body').html('<h3>New Step</h3>')
+                App.$el.children('.body').html('<h3>New Lecture</h3>')
                 lForm.edit = false
                 lForm.previousStep = 0
                 lForm.render()
@@ -1075,7 +1040,7 @@ $(function(){
                     "_id": levelId
                 })
                 Cstep.once('sync', function () {
-                    App.$el.children('.body').html('<h3>Edit Step</h3>')
+                    App.$el.children('.body').html('<h3>Edit Lecture</h3>')
                     lForm.edit = true
                     lForm.ques = Cstep.get("questions")
                     lForm.ans = Cstep.get("answers")
@@ -1107,12 +1072,12 @@ $(function(){
                         model: levelInfo
                     })
                     levelDetails.render()
-                    App.$el.children('.body').html('<h3> Step ' + levelInfo.get("step") + ' | ' + levelInfo.get("title") + '</h3>')
-                    App.$el.children('.body').append('<a class="btn btn-success" href=\'#level/add/' + levelInfo.get("courseId") + '/' + lid + '/-1\'">Edit Step</a>&nbsp;&nbsp;')
+                    App.$el.children('.body').html('<h3> Lecture ' + levelInfo.get("step") + ' | ' + levelInfo.get("title") + '</h3>')
+                    App.$el.children('.body').append('<a class="btn btn-success" href=\'#level/add/' + levelInfo.get("courseId") + '/' + lid + '/-1\'">Edit Lecture</a>&nbsp;&nbsp;')
                     App.$el.children('.body').append("<a class='btn btn-success' href='#course/manage/" + levelInfo.get('courseId') + "'>Back To Course </a>&nbsp;&nbsp;")
                     App.$el.children('.body').append("</BR></BR><B>Description</B></BR><TextArea id='LevelDescription' rows='5' cols='100' style='width:98%;'>" + levelInfo.get("description") + "</TextArea></BR>")
                     App.$el.children('.body').append("<button class='btn btn-success' style='float:right;' onclick='document.location.href=\"#savedesc/" + lid + "\"'>Save</button></BR></BR>")
-                    App.$el.children('.body').append('<B>Resources</B>&nbsp;&nbsp;<a class="btn btn-success"  style="" href=\'#search-bell/' + lid + '/' + rid + '\'">Add</a>')
+    
                     App.$el.children('.body').append(levelDetails.el)
                     App.$el.children('.body').append('</BR>')
                     if (levelInfo.get("questions") == null) {
@@ -1146,7 +1111,7 @@ $(function(){
             cSearch = new App.Views.CourseSearch()
             cSearch.render()
         var button = '<p style="margin-top:15px">'
-            button += '<a class="btn btn-success" href="#course/add">Add a new Cource</a>'
+            button += '<a class="btn btn-success" href="#course/add">Add a new Course</a>'
             button += '<a style="margin-left:10px" class="btn btn-success" onclick=showRequestForm("Course")>Request Course</a>'
             button += '<a style="margin-left:10px" class="btn btn-info" onclick="ListAllCourses()">View All Courses</a>'
             button += '<span style="float:right">Keyword:&nbsp;<input id="searchText"  placeholder="Search" value="" size="30" style="height:24px;margin-top:1%;" type="text"><span style="margin-left:10px">'
@@ -2133,39 +2098,6 @@ $(function(){
              console.log("Successfully replicated FeedBackDb :" + response)
          }
      });
-//	  MemberCourseProgress.replicate.from(URL+'/membercourseprogress',function(error, response){
-//			if(error){
-//			   console.log("membercourseprogress replication error :"+error)
-//			}else{
-//			   console.log("Successfully replicated to local membercourseprogress :" + response)
-//			}
-//	  });
-
-//	  MemberCourseProgress.replicate.to(URL+'/membercourseprogress',function(error, response){
-//			if(error){
-//				console.log("membercourseprogress replication to server error :"+error)
-//			}else{
-//				console.log("Successfully replicated membercourseprogress :" + response)
-//			}
-//	  });
-
-
-//	  CourseStep.replicate.from(URL+'/coursestep',function(error, response){
-//			if(error){
-//			    console.log("coursestep replication error :"+error)
-//			}else{
-//			    console.log("Successfully replicated coursestep :" + response)
-//			}
-//
-//	  });
-//	  CourseStep.replicate.to(URL+'/coursestep',function(error, response){
-//			if(error){
-//			    console.log("coursestep replication error :"+error)
-//			}else{
-//			   console.log("Successfully replicated coursestep :" + response)
-//			}
-//	  });
-	// this.saveFrequency(URL);
     this.syncResourceFeedback();
 	this.WeeklyReports();	 
  },
